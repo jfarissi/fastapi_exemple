@@ -32,5 +32,5 @@ app.include_router(vote.router)
 
 @app.get("/")
 def test_postes():
-    return {"data":"successfull"}
+    return {"data":"successfull tata"}
 

@@ -1,0 +1,52 @@
+version: "3"
+services:
+  api:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - fastapinetwork
+    # env_file:
+    #     - ./.env
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=password123
+      - DATABASE_NAME=fastapi
+      - DATABASE_USERNAME=postgres
+      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=fastapi
+    networks:
+      - fastapinetwork
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    networks:
+      - fastapinetwork
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+volumes:
+  postgres-db:
+networks:
+      fastapinetwork:
+          driver: bridge
