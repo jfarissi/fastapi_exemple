@@ -11,7 +11,7 @@ services:
     # env_file:
     #     - ./.env
     environment:
-      - DATABASE_HOSTNAME=postgres
+      - DATABASE_HOSTNAME=localhost
       - DATABASE_PORT=5432
       - DATABASE_PASSWORD=password123
       - DATABASE_NAME=fastapi
@@ -49,4 +49,4 @@ volumes:
   postgres-db:
 networks:
       fastapinetwork:
-          driver: bridge
+          driver: host

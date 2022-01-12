@@ -114,9 +114,9 @@ async def update_Post(id : int,post : schema.CreatePost, response : Response,
     post_u = updated_post.first()
     if updated_post == None :
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail = f"post with {id} not found") 
-
-    if post_u.owner_id != current_user.id:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= f"Not authorized to perform the action") 
+    if post_u != None :
+        if post_u.owner_id != current_user.id:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= f"Not authorized to perform the action") 
     # myPostes.pop(index)
         # raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail = f"post with {id} not found") 
         # response.status_code = status.HTTP_404_NOT_FOUND

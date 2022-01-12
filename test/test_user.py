@@ -29,7 +29,7 @@ def test_login_user(client,test_user):
 @pytest.mark.parametrize("email,password,status_code",
 [
     ('sdfsfdsf@tata.com','123456',404),
-    ('titi@gmail.com','123456',404),
+    ('titi@gmail.com','123456',200),
     ('sdfsfdsf@tata.com','sdfdsdfdfs',404),
     (None,'123456',422), 
     ('sdfsfdsf@tata.com',None,422)
