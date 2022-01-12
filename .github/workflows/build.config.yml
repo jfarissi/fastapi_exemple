@@ -2,7 +2,7 @@ name: Build and Deploy code
 on: [push, pull_request]
 jobs:
   job1:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
         uses: actions/checkout@v2
