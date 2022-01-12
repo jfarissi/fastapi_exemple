@@ -7,4 +7,4 @@ jobs:
       - name: pulling git repo
         uses: actions/checkout@v2
       - name: say hi to jfarissi 
-        run: eco "hello jfarissi"
+        run: echo "hello jfarissi"
