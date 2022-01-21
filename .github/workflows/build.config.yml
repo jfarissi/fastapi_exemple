@@ -12,7 +12,7 @@ jobs:
       DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: ${{secrets.ALGORITHM}}
-      ACCESS_TOKEN_EXPIRE_MINUTES: ${{jobs.job1.services.postgres.ports['5432']}}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{services.postgres.ports['5432']}}
 
     runs-on: ubuntu-latest   
 
