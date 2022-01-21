@@ -33,6 +33,7 @@ jobs:
     steps:
       - name: pulling git repo
         uses: actions/checkout@v2
+      - name: initialise postgres  
         run: pg_isready -h localhost -p ${{ job.services.postgres.ports[5432] }}
       - name: Install python version 3.9
         uses: actions/setup-python@v2
