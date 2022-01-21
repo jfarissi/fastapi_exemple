@@ -12,7 +12,7 @@ jobs:
       DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: ${{secrets.ALGORITHM}}
-      ACCESS_TOKEN_EXPIRE_MINUTES: ${{services.postgres.ports['5432']}}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}  
 
     runs-on: ubuntu-latest   
 
@@ -33,6 +33,7 @@ jobs:
     steps:
       - name: pulling git repo
         uses: actions/checkout@v2
+        run: pg_isready -h localhost -p ${{ job.services.postgres.ports[5432] }}
       - name: Install python version 3.9
         uses: actions/setup-python@v2
         with:
